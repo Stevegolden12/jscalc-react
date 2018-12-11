@@ -1,3 +1,8 @@
+.index__displayCal {
+  border: 1px solid black;
+  height: 40px;
+}
+
 .index__buttonBorder {
   border: 1px solid black;
   text-align: center;
