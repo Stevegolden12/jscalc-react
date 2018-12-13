@@ -15,7 +15,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      result: 0,
+      result: '0',
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -23,12 +23,25 @@ class App extends Component {
 
   handleChange(setVal) {
     // do not forget to bind getData in constructor
-    this.setState({
-      result: setVal,
-    })
+    if (setVal !== 'CA' && setVal !== '=') {
+      this.setState({
+        result: this.state.result + setVal,
+      })
+    } else if (setVal === '=') {
+      console.log('testing =')
+      console.log(Number(this.state.result));
+      this.setState({
+        result: '='
+      })
+    } else {
+      this.setState({
+        result: '0'
+      })
+    }
   }
 
   render() {
+    console.log(1 + 3)
      return (
       <div className="App">
         <CalcDisplay disResult={this.state.result} />
