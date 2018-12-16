@@ -1,10 +1,4 @@
-/* 12/12/2018 1am Trying to pass the correct information to state.result when the CalcButton is clicked
-   Look at the stackoverflow question:
-   https://stackoverflow.com/questions/38394015/how-to-pass-data-from-child-component-to-its-parent-in-reactjs
-
-https://medium.com/@ruthmpardee/passing-data-between-react-components-103ad82ebd17
-
-https://codepen.io/et10man/pen/xXrwOQ?editors=0010
+/*Still working on the removing 0 when first typed a number
  */
 
 import React, { Component } from 'react';
@@ -16,37 +10,71 @@ class App extends Component {
 
     this.state = {
       result: '0',
+      resetResult: false,
     }
     this.handleChange = this.handleChange.bind(this);
   }
 
 
   handleChange(setVal) {
-    // do not forget to bind getData in constructor
-    if (setVal !== 'CA' && setVal !== '=') {
+   //Validate that if arithmetic operation is input consecutively than the last input replaces the previous operator
+    if (this.state.result.length > 1 && (setVal === '*' || setVal === '/' || setVal === '-' || setVal === '+')) {
+      console.log(this.state.result.charAt(this.state.result.length - 1))
+      switch (this.state.result.charAt(this.state.result.length - 1)) {
+        case '*':
+        case '/':
+        case '-':
+        case '+':
+        case '=':
+          console.log('length ' + this.state.result.length)
+          console.log(this.state.result.slice(0, this.state.result.length - 1))
+          this.setState({
+            result: this.state.result.slice(0, this.state.result.length - 1) + setVal
+          })
+          let setVal = ''
+        default:
+          
+      }
+    }
+    //Validates operation and decimals when there is only '0'
+    if (this.state.result.length === 1 && this.state.result[0] === '0') {
+      if (setVal === 'CA' || setVal === '*' || setVal === '/' || setVal === '-' || setVal === '+' || setVal === '=') {
+        setVal = '0';
+      } else if (setVal === '.') {
+        setVal = '0.'
+      }
+      this.setState({
+        result: setVal,
+      })
+    }//Check input and clear and enter and decmical differently
+    else if (setVal !== 'CA' && setVal !== '=' && setVal !== '.') {
       this.setState({
         result: this.state.result + setVal,
       })
     } else if (setVal === '=') {
-      console.log('testing =')
-      console.log(Number(this.state.result));
+      console.log('reset: ' + this.state.resetResult)
       this.setState({
-        result: '='
+        result: eval(this.state.result),
+        resetResult: true,
       })
-    } else {
+      console.log('reset after result' + this.state.resetResult)
+    } else if (setVal === 'CA') {
       this.setState({
         result: '0'
+      })
+    } else if (setVal === '.') {
+      this.setState({
+        result: this.state.result + '0.'
       })
     }
   }
 
   render() {
-    console.log(1 + 3)
      return (
       <div className="App">
         <CalcDisplay disResult={this.state.result} />
          <CalcButton buttonId="clear" buttonDesc="CA" hChange={this.handleChange} />
-         <CalcButton buttonId="multiply" buttonDesc="X" hChange={this.handleChange} />
+         <CalcButton buttonId="multiply" buttonDesc="*" hChange={this.handleChange} />
          <CalcButton buttonId="divide" buttonDesc="/" hChange={this.handleChange} />
         <CalcButton buttonId="one" buttonDesc="1" hChange={this.handleChange}/>
         <CalcButton buttonId="two" buttonDesc="2" hChange={this.handleChange}/>
