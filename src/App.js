@@ -1,6 +1,10 @@
-/*Still working on the removing 0 when first typed a number
- */
+/*Finish the operation where if the last character is an arithmetic operator and the next input is also
+ * an operator the input will replace the previous operator 
+ * 
+ * 
+ *       if (this.state.result.charAt(this.state.result.length - 1) === '*' || this.state.result.charAt(this.state.result.length - 1) === '/' || this.state.result.charAt(this.state.result.length - 1) === '-' || this.state.result.charAt(this.state.result.length - 1) === '+')){
 
+ */
 import React, { Component } from 'react';
 import './App.css';
 
@@ -15,59 +19,56 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+    handleChange(setVal) {
+      //Validate that if arithmetic operation is input consecutively than the last input replaces the previous operator
+      if (this.state.result.length > 1 && (setVal === '*' || setVal === '/' || setVal === '-' || setVal === '+')) {
 
-  handleChange(setVal) {
-   //Validate that if arithmetic operation is input consecutively than the last input replaces the previous operator
-    if (this.state.result.length > 1 && (setVal === '*' || setVal === '/' || setVal === '-' || setVal === '+')) {
-      console.log(this.state.result.charAt(this.state.result.length - 1))
-      switch (this.state.result.charAt(this.state.result.length - 1)) {
-        case '*':
-        case '/':
-        case '-':
-        case '+':
-        case '=':
-          console.log('length ' + this.state.result.length)
-          console.log(this.state.result.slice(0, this.state.result.length - 1))
+        if ((this.state.result.charAt(this.state.result.length - 1) === '*') || (this.state.result.charAt(this.state.result.length - 1) === '/') || (this.state.result.charAt(this.state.result.length - 1) === '-') || (this.state.result.charAt(this.state.result.length - 1) === '+')) {
+          var resetVal = this.state.result.substr(0, this.state.result.length - 1) + setVal
           this.setState({
-            result: this.state.result.slice(0, this.state.result.length - 1) + setVal
+            result: resetVal
           })
-          let setVal = ''
-        default:
-          
+          return this.state.result;
+        } 
       }
-    }
-    //Validates operation and decimals when there is only '0'
-    if (this.state.result.length === 1 && this.state.result[0] === '0') {
-      if (setVal === 'CA' || setVal === '*' || setVal === '/' || setVal === '-' || setVal === '+' || setVal === '=') {
-        setVal = '0';
+     //Validates operation and decimals when there is only '0'
+      if (this.state.result.length === 1 && this.state.result[0] === '0') {
+        if (setVal === 'CA' || setVal === '*' || setVal === '/' || setVal === '-' || setVal === '+' || setVal === '=') {
+          setVal = '0';
+        } else if (setVal === '.') {
+          setVal = '0.'
+        }
+        this.setState({
+          result: setVal,
+        })
+      }//Check input and clear and enter and decmical differently
+      else if (setVal !== 'CA' && setVal !== '=' && setVal !== '.') {
+        this.setState({
+          result: this.state.result + setVal,
+        })
+      } else if (setVal === '=') {
+        if ((this.state.result.charAt(this.state.result.length - 1) === '*') || (this.state.result.charAt(this.state.result.length - 1) === '/') || (this.state.result.charAt(this.state.result.length - 1) === '-') || (this.state.result.charAt(this.state.result.length - 1) === '+')) {
+          this.setState({
+            result: eval(this.state.result.substr(0, this.state.result.length - 1)),
+            resetResult: true,
+          })
+          return this.state.result;
+        }
+
+        this.setState({
+          result: eval(this.state.result),
+          resetResult: true,
+        })
+      } else if (setVal === 'CA') {
+        this.setState({
+          result: '0'
+        })
       } else if (setVal === '.') {
-        setVal = '0.'
+        this.setState({
+          result: this.state.result + '0.'
+        })
       }
-      this.setState({
-        result: setVal,
-      })
-    }//Check input and clear and enter and decmical differently
-    else if (setVal !== 'CA' && setVal !== '=' && setVal !== '.') {
-      this.setState({
-        result: this.state.result + setVal,
-      })
-    } else if (setVal === '=') {
-      console.log('reset: ' + this.state.resetResult)
-      this.setState({
-        result: eval(this.state.result),
-        resetResult: true,
-      })
-      console.log('reset after result' + this.state.resetResult)
-    } else if (setVal === 'CA') {
-      this.setState({
-        result: '0'
-      })
-    } else if (setVal === '.') {
-      this.setState({
-        result: this.state.result + '0.'
-      })
     }
-  }
 
   render() {
      return (
