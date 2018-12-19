@@ -72,12 +72,13 @@ class App extends Component {
 
   render() {
      return (
-      <div className="App">
+       <div className="App">
+         <div className="calcWrapper">
         <CalcDisplay disResult={this.state.result} />
-         <CalcButton buttonId="clear" buttonDesc="CA" hChange={this.handleChange} />
-         <CalcButton buttonId="multiply" buttonDesc="*" hChange={this.handleChange} />
+        <CalcButton buttonId="clear" buttonDesc="CA" hChange={this.handleChange} />
          <CalcButton buttonId="divide" buttonDesc="/" hChange={this.handleChange} />
-        <CalcButton buttonId="one" buttonDesc="1" hChange={this.handleChange}/>
+         <CalcButton buttonId="multiply" buttonDesc="*" hChange={this.handleChange} />
+         <CalcButton buttonId="one" buttonDesc="1" hChange={this.handleChange} />
         <CalcButton buttonId="two" buttonDesc="2" hChange={this.handleChange}/>
         <CalcButton buttonId="three" buttonDesc="3"  hChange={this.handleChange}/>
         <CalcButton buttonId="subtract" buttonDesc="-" hChange={this.handleChange}/>
@@ -90,7 +91,8 @@ class App extends Component {
         <CalcButton buttonId="nine" buttonDesc="9" hChange={this.handleChange}/>
         <CalcButton buttonId="equals" buttonDesc="=" hChange={this.handleChange}/>
         <CalcButton buttonId="zero" buttonDesc="0" hChange={this.handleChange}/>
-        <CalcButton buttonId="decimal" buttonDesc="." hChange={this.handleChange}/>
+        <CalcButton buttonId="decimal" buttonDesc="." hChange={this.handleChange} />
+       </div>
       </div>
     );
   }

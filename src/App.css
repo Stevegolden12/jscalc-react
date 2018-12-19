@@ -1,11 +1,119 @@
+/*
+  Fix grid-template areas
+  https://codepen.io/freeCodeCamp/full/wgGVVX description
+
+*/
+
+
 .index__displayCal {
   border: 1px solid black;
-  height: 40px;
+  grid-area: display;
+  width: 100%;
+  text-align: right;
+  font-size: 45px;
 }
 
 .index__buttonBorder {
   border: 1px solid black;
   text-align: center;
-  width: 5%;
-  height: 10%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white;
+  font-size: 40px;
+}
+
+.calcWrapper {
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 25%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: repeat(6, auto);
+  grid-template-areas:
+    "display display display display"
+    "clear clear divide multiply"
+    "seven eight nine subtract"
+    "four five six add"
+    "one two three equals"
+    "zero zero decimal equals";
+  grid-gap: 5px;
+  border: 1p solid black;
+
+}
+
+#clear {
+  grid-area: clear;
+  background-color: red;
+}
+
+#multiply {
+  grid-area: multiply;
+  background-color: gray;
+}
+
+#divide {
+  grid-area: divide;
+  background-color: gray;
+
+}
+
+#one {
+  grid-area: one;
+}
+
+#two {
+  grid-area: two;
+}
+
+#three {
+  grid-area: three;
+}
+
+#subtract {
+  grid-area: subtract;
+  background-color: gray;
+}
+
+#four {
+  grid-area: four;
+}
+
+#five {
+  grid-area: five;
+}
+
+#six {
+  grid-area: six;
+}
+
+#add {
+  grid-area: add;
+  background-color: gray;
+}
+
+#seven {
+  grid-area: seven;
+}
+
+#eight {
+  grid-area: eight;
+}
+
+#nine {
+  grid-area: nine;
+}
+
+#equals {
+  grid-area: equals;
+  background-color: gray;
+}
+
+#zero {
+  grid-area: zero;
+}
+
+#decimal {
+  grid-area: decimal;
+  background-color: gray;
 }
