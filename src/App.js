@@ -73,28 +73,30 @@ class App extends Component {
   render() {
      return (
        <div className="App">
-         <div className="calcWrapper">
-        <CalcDisplay disResult={this.state.result} />
-        <CalcButton buttonId="clear" buttonDesc="CA" hChange={this.handleChange} />
-         <CalcButton buttonId="divide" buttonDesc="/" hChange={this.handleChange} />
-         <CalcButton buttonId="multiply" buttonDesc="*" hChange={this.handleChange} />
-         <CalcButton buttonId="one" buttonDesc="1" hChange={this.handleChange} />
-        <CalcButton buttonId="two" buttonDesc="2" hChange={this.handleChange}/>
-        <CalcButton buttonId="three" buttonDesc="3"  hChange={this.handleChange}/>
-        <CalcButton buttonId="subtract" buttonDesc="-" hChange={this.handleChange}/>
-        <CalcButton buttonId="four" buttonDesc="4" hChange={this.handleChange}/>
-        <CalcButton buttonId="five" buttonDesc="5" hChange={this.handleChange}/>
-        <CalcButton buttonId="six" buttonDesc="6" hChange={this.handleChange}/>
-        <CalcButton buttonId="add" buttonDesc="+" hChange={this.handleChange}/>
-        <CalcButton buttonId="seven" buttonDesc="7" hChange={this.handleChange} />
-        <CalcButton buttonId="eight" buttonDesc="8" hChange={this.handleChange} />
-        <CalcButton buttonId="nine" buttonDesc="9" hChange={this.handleChange}/>
-        <CalcButton buttonId="equals" buttonDesc="=" hChange={this.handleChange}/>
-        <CalcButton buttonId="zero" buttonDesc="0" hChange={this.handleChange}/>
-        <CalcButton buttonId="decimal" buttonDesc="." hChange={this.handleChange} />
+         <div className ="calcBody">
+           <div className="calcWrapper">
+             <CalcDisplay disResult={this.state.result} />
+              <CalcButton buttonId="clear" buttonDesc="CA" hChange={this.handleChange} />
+              <CalcButton buttonId="divide" buttonDesc="/" hChange={this.handleChange} />
+              <CalcButton buttonId="multiply" buttonDesc="*" hChange={this.handleChange} />
+              <CalcButton buttonId="one" buttonDesc="1" hChange={this.handleChange} />
+              <CalcButton buttonId="two" buttonDesc="2" hChange={this.handleChange}/>
+              <CalcButton buttonId="three" buttonDesc="3"  hChange={this.handleChange}/>
+              <CalcButton buttonId="subtract" buttonDesc="-" hChange={this.handleChange}/>
+              <CalcButton buttonId="four" buttonDesc="4" hChange={this.handleChange}/>
+              <CalcButton buttonId="five" buttonDesc="5" hChange={this.handleChange}/>
+              <CalcButton buttonId="six" buttonDesc="6" hChange={this.handleChange}/>
+              <CalcButton buttonId="add" buttonDesc="+" hChange={this.handleChange}/>
+              <CalcButton buttonId="seven" buttonDesc="7" hChange={this.handleChange} />
+              <CalcButton buttonId="eight" buttonDesc="8" hChange={this.handleChange} />
+              <CalcButton buttonId="nine" buttonDesc="9" hChange={this.handleChange}/>
+              <CalcButton buttonId="equals" buttonDesc="=" hChange={this.handleChange}/>
+              <CalcButton buttonId="zero" buttonDesc="0" hChange={this.handleChange}/>
+              <CalcButton buttonId="decimal" buttonDesc="." hChange={this.handleChange} />
+           </div>
+         </div>
        </div>
-      </div>
-    );
+     );
   }
 }
 

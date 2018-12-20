@@ -2,31 +2,31 @@
   Fix grid-template areas
   https://codepen.io/freeCodeCamp/full/wgGVVX description
 
+  https://www.google.com/search?q=calculator+image&rlz=1C1CHBD_enUS790US790&tbm=isch&source=iu&ictx=1&fir=yY3gAJrfyQl7WM%253A%252C7JiaPG6ikvaL8M%252C_&usg=AI4_-kT0K--Vhp4VfisGBddoCh6-il5Jcw&sa=X&ved=2ahUKEwiz8oi0zqzfAhVn94MKHbEoC20Q9QEwAnoECAAQCA#imgrc=yY3gAJrfyQl7WM: im
+  cal image
 */
 
-
-.index__displayCal {
-  border: 1px solid black;
-  grid-area: display;
-  width: 100%;
-  text-align: right;
-  font-size: 45px;
+:root {
+  --backgrd-calc-color: gray;
+  --oper-button-color: blue;
+  --num-button-color: black;
+  --clear-button-color: red;
 }
 
-.index__buttonBorder {
-  border: 1px solid black;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  color: white;
-  font-size: 40px;
+
+.calcBody {
+  background-color: var(--backgrd-calc-color);
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 25%;
+  padding: 7% 0 12% 0;
+  display: flex;
+  justify-content: center;
 }
 
 .calcWrapper {
-  width: 75%;
-  margin: 0 auto;
-  margin-top: 25%;
+  width: 80%;
+  margin: auto;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: repeat(6, auto);
@@ -38,8 +38,28 @@
     "one two three equals"
     "zero zero decimal equals";
   grid-gap: 5px;
-  border: 1p solid black;
+  border: 1px solid black;
+  padding-right: 16px;
 
+}
+
+.index__displayCal {
+  border: 1px solid black;
+  grid-area: display;
+  width: 100%;
+  text-align: right;
+  font-size: 45px;
+  background-color: white;
+}
+
+.index__buttonBorder {
+  border: 1px solid black;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--num-button-color);
+  color: white;
+  font-size: 40px;
 }
 
 #clear {
@@ -49,12 +69,12 @@
 
 #multiply {
   grid-area: multiply;
-  background-color: gray;
+  background-color: var(--oper-button-color);
 }
 
 #divide {
   grid-area: divide;
-  background-color: gray;
+  background-color: var(--oper-button-color);
 
 }
 
@@ -72,7 +92,7 @@
 
 #subtract {
   grid-area: subtract;
-  background-color: gray;
+  background-color: var(--oper-button-color);
 }
 
 #four {
@@ -89,7 +109,7 @@
 
 #add {
   grid-area: add;
-  background-color: gray;
+  background-color: var(--oper-button-color);
 }
 
 #seven {
@@ -106,7 +126,7 @@
 
 #equals {
   grid-area: equals;
-  background-color: gray;
+  background-color: var(--oper-button-color);
 }
 
 #zero {
@@ -115,5 +135,5 @@
 
 #decimal {
   grid-area: decimal;
-  background-color: gray;
+  background-color: var(--oper-button-color);
 }
