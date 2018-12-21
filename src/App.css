@@ -1,5 +1,4 @@
 /*
-  Fix grid-template areas
   https://codepen.io/freeCodeCamp/full/wgGVVX description
 
   https://www.google.com/search?q=calculator+image&rlz=1C1CHBD_enUS790US790&tbm=isch&source=iu&ictx=1&fir=yY3gAJrfyQl7WM%253A%252C7JiaPG6ikvaL8M%252C_&usg=AI4_-kT0K--Vhp4VfisGBddoCh6-il5Jcw&sa=X&ved=2ahUKEwiz8oi0zqzfAhVn94MKHbEoC20Q9QEwAnoECAAQCA#imgrc=yY3gAJrfyQl7WM: im
@@ -13,12 +12,23 @@
   --clear-button-color: red;
 }
 
+/* Digital Font for calculator display */
+
+
+@font-face {
+  font-family: 'digital7';
+  src: url('./fonts/digital7.ttf')  format('truetype');
+}
+
+.calcTitle {
+  text-align: center;
+}
 
 .calcBody {
   background-color: var(--backgrd-calc-color);
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
-  margin-top: 25%;
+  margin-top: 10%;
   padding: 7% 0 12% 0;
   display: flex;
   justify-content: center;
@@ -50,6 +60,7 @@
   text-align: right;
   font-size: 45px;
   background-color: white;
+  font-family: "digital7";
 }
 
 .index__buttonBorder {
@@ -136,4 +147,21 @@
 #decimal {
   grid-area: decimal;
   background-color: var(--oper-button-color);
+}
+
+/* medium breakpoint 768px */
+
+@media only screen and (min-width: 768px) {
+  .calcBody{
+    width: 50%;
+    margin-top: 5%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .calcBody {
+    width: 35%;
+    margin-top: 5%;
+    padding: 3% 0 6% 0;
+  }
 }

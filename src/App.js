@@ -20,10 +20,17 @@ class App extends Component {
   }
 
     handleChange(setVal) {
-      //Validate that if arithmetic operation is input consecutively than the last input replaces the previous operator
-      if (this.state.result.length > 1 && (setVal === '*' || setVal === '/' || setVal === '-' || setVal === '+')) {
-
+      //Validate that if arithmetic operation is input consecutively than the last input replaces the previous operator and zero
+      if (this.state.result.length > 1 && (setVal === '0')) {
         if ((this.state.result.charAt(this.state.result.length - 1) === '*') || (this.state.result.charAt(this.state.result.length - 1) === '/') || (this.state.result.charAt(this.state.result.length - 1) === '-') || (this.state.result.charAt(this.state.result.length - 1) === '+')) {
+          setVal = '';
+          return this.state.result;
+        }
+      }
+
+
+      if (this.state.result.length > 1 && (setVal === '*' || setVal === '/' || setVal === '-' || setVal === '+')) {
+          if ((this.state.result.charAt(this.state.result.length - 1) === '*') || (this.state.result.charAt(this.state.result.length - 1) === '/') || (this.state.result.charAt(this.state.result.length - 1) === '-') || (this.state.result.charAt(this.state.result.length - 1) === '+')) {
           var resetVal = this.state.result.substr(0, this.state.result.length - 1) + setVal
           this.setState({
             result: resetVal
@@ -73,6 +80,7 @@ class App extends Component {
   render() {
      return (
        <div className="App">
+         <h1 className="calcTitle">React Calculator</h1>
          <div className ="calcBody">
            <div className="calcWrapper">
              <CalcDisplay disResult={this.state.result} />
