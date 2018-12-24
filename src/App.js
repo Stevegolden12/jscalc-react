@@ -1,6 +1,7 @@
-/*Finish the operation where if the last character is an arithmetic operator and the next input is also
- * an operator the input will replace the previous operator 
- * 
+/*Finish the operation where if the no two decimals can be in the same number
+ * * Going to need to check the string for the last operator
+ *   get that string
+ *   check for a decimal
  * 
  *       if (this.state.result.charAt(this.state.result.length - 1) === '*' || this.state.result.charAt(this.state.result.length - 1) === '/' || this.state.result.charAt(this.state.result.length - 1) === '-' || this.state.result.charAt(this.state.result.length - 1) === '+')){
 
@@ -19,8 +20,9 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-    handleChange(setVal) {
-      //Validate that if arithmetic operation is input consecutively than the last input replaces the previous operator and zero
+  handleChange(setVal) {
+
+      //Validate that if arithmetic operation is input cannot add a zero after it
       if (this.state.result.length > 1 && (setVal === '0')) {
         if ((this.state.result.charAt(this.state.result.length - 1) === '*') || (this.state.result.charAt(this.state.result.length - 1) === '/') || (this.state.result.charAt(this.state.result.length - 1) === '-') || (this.state.result.charAt(this.state.result.length - 1) === '+')) {
           setVal = '';
@@ -28,7 +30,7 @@ class App extends Component {
         }
       }
 
-
+      //Validate that if arithmetic operation is input consecutively than the last input replaces the previous operator
       if (this.state.result.length > 1 && (setVal === '*' || setVal === '/' || setVal === '-' || setVal === '+')) {
           if ((this.state.result.charAt(this.state.result.length - 1) === '*') || (this.state.result.charAt(this.state.result.length - 1) === '/') || (this.state.result.charAt(this.state.result.length - 1) === '-') || (this.state.result.charAt(this.state.result.length - 1) === '+')) {
           var resetVal = this.state.result.substr(0, this.state.result.length - 1) + setVal
@@ -71,9 +73,52 @@ class App extends Component {
           result: '0'
         })
       } else if (setVal === '.') {
-        this.setState({
-          result: this.state.result + '0.'
-        })
+             //Validate that a decimal can not be pressed twice and registered.
+        let newStr = this.state.result;
+        // console.log('newStr: ' + newStr); 
+
+      // Finding the last operation position in the string
+       let chkplus = newStr.lastIndexOf('+');
+       let chkminus = newStr.lastIndexOf('-');
+       let chkdivide = newStr.lastIndexOf('/');
+       let chkmultiple = newStr.lastIndexOf('*');
+
+        let chkVal = chkplus;
+        if (chkminus > chkVal) {
+          chkVal = chkminus;
+        }
+        if (chkdivide > chkVal) {
+          chkVal = chkdivide;
+        }
+        if (chkmultiple > chkVal) {
+          chkVal = chkmultiple;
+        }
+        console.log('check string: ' + newStr.slice(chkVal))
+        //Get the last string from the last operation
+        let chkStr = newStr.slice(chkVal);
+        let ckDoubleDec = false;
+        //Check to see if the last string already has a decimal and if so make a switch
+        console.log("chkStr: " + chkStr.search(/['.']/))
+        if (chkStr.search(/['.']/) !== -1) {
+          ckDoubleDec = true;
+        }
+
+        if (ckDoubleDec === true) {
+          setVal = '';
+        }
+
+        if (setVal === '.') {
+          if ((this.state.result.charAt(this.state.result.length - 1) === '*') || (this.state.result.charAt(this.state.result.length - 1) === '/') || (this.state.result.charAt(this.state.result.length - 1) === '-') || (this.state.result.charAt(this.state.result.length - 1) === '+')) {
+            this.setState({
+              result: this.state.result + '0.'
+            })
+          } else {
+            this.setState({
+              result: this.state.result + setVal
+            })
+
+          }
+        }
       }
     }
 
@@ -115,7 +160,7 @@ class CalcDisplay extends React.Component {
   render(){
     return (
       <React.Fragment>
-        <div className="index__displayCal">{this.props.disResult}</div>
+        <div className="index__displayCal" id="display">{this.props.disResult}</div>
       </React.Fragment>
     )
   }
@@ -135,7 +180,7 @@ class CalcButton extends React.Component {
       
     return (
       <React.Fragment>
-        <div id={this.props.buttonId} className="index__buttonBorder" onClick={this.handleChange}>{this.props.buttonDesc}</div>
+        <div id={this.props.buttonId} className="index__buttonBorder index__buttonClick" onClick={this.handleChange}>{this.props.buttonDesc}</div>
       </React.Fragment>
     )
   }
