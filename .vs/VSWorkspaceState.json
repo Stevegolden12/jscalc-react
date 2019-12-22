@@ -3,8 +3,9 @@
     "",
     "\\public",
     "\\src",
+    "\\src\\components",
     "\\src\\fonts"
   ],
-  "SelectedNode": "\\public\\index.html",
+  "SelectedNode": "\\src\\fonts",
   "PreviewInSolutionExplorer": false
 }
