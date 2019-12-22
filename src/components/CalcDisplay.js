@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../App.css';
 
 class CalcDisplay extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
   render() {
     return (
       <React.Fragment>
