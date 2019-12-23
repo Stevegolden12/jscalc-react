@@ -58,9 +58,18 @@ class App extends Component {
           result: this.state.result + setVal,
         })
       } else if (setVal === '=') {
+       
         if ((this.state.result.charAt(this.state.result.length - 1) === '*') || (this.state.result.charAt(this.state.result.length - 1) === '/') || (this.state.result.charAt(this.state.result.length - 1) === '-') || (this.state.result.charAt(this.state.result.length - 1) === '+')) {
+          let removeNonNumbers = this.state.result.substr(0, this.state.result.length - 1)
+          let allNonNumbers = /\D/gm
+          console.log(removeNonNumbers.match(/\D/gm))
+          let allNumbers = removeNonNumbers.match(allNonNumbers).filter(function (m, i, self) {
+            return i === self.indexOf(m)
+          }).join('')
+
+          console.log(allNumbers)
           this.setState({
-            result: eval(this.state.result.substr(0, this.state.result.length - 1)),
+            result: eval(removeNonNumbers),
             resetResult: true,
           })
           return this.state.result;
@@ -95,12 +104,12 @@ class App extends Component {
         if (chkmultiple > chkVal) {
           chkVal = chkmultiple;
         }
-        console.log('check string: ' + newStr.slice(chkVal))
+    
         //Get the last string from the last operation
         let chkStr = newStr.slice(chkVal);
         let ckDoubleDec = false;
         //Check to see if the last string already has a decimal and if so make a switch
-        console.log("chkStr: " + chkStr.search(/['.']/))
+   
         if (chkStr.search(/['.']/) !== -1) {
           ckDoubleDec = true;
         }
